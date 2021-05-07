@@ -5,7 +5,7 @@ public class Calculator {
     private int expectedHeight;
     private int expectedArea;
 
-
+    // creator
     public Calculator () {
         expectedHeight = 0;
         expectedArea = 0;
