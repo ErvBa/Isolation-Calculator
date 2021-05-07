@@ -2,42 +2,81 @@
 
 public class Calculator {
 
-    private int expectedHeight;
+    private int expectedThickness;
     private int expectedArea;
+    private double isolationVolume;
+
+    /**
+     * constant variables.
+     */
+    final int costKvm = 31;                 // cost of material for 1cm * 100cm * 100cm
+    final int costLowThickness = 70;        // work cost for thickness <= 7cm.
+    final int costHighThickness = 50;       // work cost for thickness > 7cm.
+    final double consumptionVar = 0.35;     // variable for calculation of material consumption.
 
     // creator
     public Calculator () {
-        expectedHeight = 0;
+        expectedThickness = 0;
         expectedArea = 0;
+        isolationVolume = 0;
+    }
+    /**
+     * Method used for returning the expected Thickness.
+     * @return an int representing the Thickness for isolation.
+     */
+    public int getExpectedThickness() {
+        return expectedThickness;
     }
 
-    public int getExpectedHeight() {
-        return expectedHeight;
-    }
-
+    /**
+     * Method used for returning the expected Area.
+     * @return an int representing the area to be
+     */
     public int getExpectedArea() {
         return expectedArea;
     }
 
-    public void setExpectedHeight(int expectedHeight) {
-        this.expectedHeight = expectedHeight;
+    /**
+     * Method used to set the expected thickness.
+     * @param expectedThickness expected thickness to be sprayed.
+     */
+    public void setExpectedThickness(int expectedThickness) {
+        this.expectedThickness = expectedThickness;
     }
 
+    /**
+     * Method used to set the expected thickness.
+     * @param expectedArea expected area to be sprayed
+     */
     public void setExpectedArea(int expectedArea) {
         this.expectedArea = expectedArea;
     }
+
+    /**
+     * Method used to calculate the cost according to height and thickness.
+     * @return an int representing the cost rounded to nearest 5th.
+     */
     public double calculateCost(){
-        int costKvm = 31;
         double cost = 0;
-        if(0 < expectedHeight){
-            if (expectedHeight < 7){
-                cost = expectedHeight * costKvm + 70;
-            } else if (expectedHeight > 7){
-                cost = expectedHeight * costKvm + 50;
+        if(0 < expectedThickness){
+            if (expectedThickness < 7){
+                cost = expectedThickness * costKvm + costLowThickness;
+            } else if (expectedThickness > 7){
+                cost = expectedThickness * costKvm + costHighThickness;
             }
         }
         cost = Math.round(cost/5) * 5;
         cost = cost * expectedArea;
         return cost;
     }
+
+    /**
+     * Method used to calculate the expected material consumption.
+     * @return a double value representing the expected material consumption.
+     */
+    public double averageMaterialConsumption() {
+        isolationVolume = expectedThickness * expectedArea * consumptionVar;
+        return isolationVolume;
+    }
+
 }
