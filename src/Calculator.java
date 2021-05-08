@@ -4,7 +4,7 @@ public class Calculator {
 
     private int expectedThickness;
     private int expectedArea;
-    private double isolationVolume;
+    private double mCost;
 
     /**
      * constant variables.
@@ -13,13 +13,15 @@ public class Calculator {
     final int costLowThickness = 70;        // work cost for thickness <= 7cm.
     final int costHighThickness = 50;       // work cost for thickness > 7cm.
     final double consumptionVar = 0.35;     // variable for calculation of material consumption.
+    final double setupCost = 900;
 
     // creator
     public Calculator () {
         expectedThickness = 0;
         expectedArea = 0;
-        isolationVolume = 0;
+        mCost = 0;
     }
+
     /**
      * Method used for returning the expected Thickness.
      * @return an int representing the Thickness for isolation.
@@ -34,6 +36,14 @@ public class Calculator {
      */
     public int getExpectedArea() {
         return expectedArea;
+    }
+
+    public double getmCost() {
+        return mCost;
+    }
+
+    public double getSetupCost() {
+        return setupCost;
     }
 
     /**
@@ -66,8 +76,10 @@ public class Calculator {
             }
         }
         cost = Math.round(cost/5) * 5;
+        mCost =cost;
         cost = cost * expectedArea;
-        return cost;
+        cost = cost + setupCost;
+       return cost;
     }
 
     /**
@@ -75,8 +87,7 @@ public class Calculator {
      * @return a double value representing the expected material consumption.
      */
     public double averageMaterialConsumption() {
-        isolationVolume = expectedThickness * expectedArea * consumptionVar;
-        return isolationVolume;
+        return expectedThickness * expectedArea * consumptionVar;
     }
 
 }
