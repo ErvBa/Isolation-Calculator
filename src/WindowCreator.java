@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class WindowCreator {
 
@@ -72,32 +70,17 @@ public class WindowCreator {
         window.add(label);
     }
 
-    private static void addButton(Container window) {
-        JButton button = new JButton("Beräkna");
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                button.setText("Räkna igen");
-
-            }
-        });
-        window.add(button);
-    }
     private static void addButton(Container window, Container text) {
         JButton button = new JButton("Beräkna");
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        button.addActionListener(e -> {
 
-                Calculator calc = new Calculator();
-                JTextField t1 = (JTextField) text.getComponent(1);
-                JTextField t2 = (JTextField) text.getComponent(5);
-                calc.setExpectedThickness(Integer.parseInt(t1.getText()));
-                calc.setExpectedArea(Integer.parseInt(t2.getText()));
-                resultPopup(calc, window);
-            }
+            Calculator calc = new Calculator();
+            JTextField t1 = (JTextField) text.getComponent(1);
+            JTextField t2 = (JTextField) text.getComponent(5);
+            calc.setExpectedThickness(Integer.parseInt(t1.getText()));
+            calc.setExpectedArea(Integer.parseInt(t2.getText()));
+            resultPopup(calc, window);
         });
         window.add(button);
     }
