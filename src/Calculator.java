@@ -15,7 +15,9 @@ public class Calculator {
     final double consumptionVar = 0.35;     // variable for calculation of material consumption.
     final double setupCost = 900;
 
-    // creator
+    /**
+     * Creator class
+     */
     public Calculator () {
         expectedThickness = 0;
         expectedArea = 0;
@@ -38,10 +40,18 @@ public class Calculator {
         return expectedArea;
     }
 
+    /**
+     * Method used to get m2 cost.
+     * @return Double value representing the m2 cost.
+     */
     public double getmCost() {
         return mCost;
     }
 
+    /**
+     * Method used to get the setup Cost.
+     * @return Double value representing setup Cost.
+     */
     public double getSetupCost() {
         return setupCost;
     }
@@ -89,5 +99,4 @@ public class Calculator {
     public double averageMaterialConsumption() {
         return expectedThickness * expectedArea * consumptionVar;
     }
-
 }

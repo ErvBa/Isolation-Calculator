@@ -13,18 +13,15 @@ public class WindowCreator {
         JFrame window = new JFrame("Isolation Calculator");
        // window.setPreferredSize(new Dimension(1024, 576));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        addComponentsToWindow(window);
+        createLayout(window.getContentPane());
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
 
-    private static void addComponentsToWindow(JFrame window) {
-        createLayout(window.getContentPane());
-    }
-
     /**
-     *
+     * Method used for creating the layout for the program window
+     * @param window The main window of the program
      */
     private static void createLayout(Container window) {
 
@@ -41,7 +38,6 @@ public class WindowCreator {
         labels.add(Box.createHorizontalGlue());
         areaLabel(labels);
         inputLines(inputLines);
-       // addButton(buttons);
         addButton(buttons,inputLines);
 
         window.add(Box.createRigidArea(new Dimension(0,30)));
@@ -55,7 +51,8 @@ public class WindowCreator {
     }
 
     /**
-     *
+     * Method used for adding thickness label to the program window.
+     * @param window The container
      */
     private static void thicknessLabel(Container window) {
         JLabel label = new JLabel("Ange önskad tjocklek (cm)", SwingConstants.CENTER);
@@ -63,6 +60,11 @@ public class WindowCreator {
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
         window.add(label);
     }
+
+    /**
+     * Method used for adding area label to the program window.
+     * @param window The container
+     */
     private static void areaLabel(Container window) {
         JLabel label = new JLabel("Ange Area (m2)", SwingConstants.CENTER);
         label.setPreferredSize(new Dimension(300,100));
@@ -70,6 +72,11 @@ public class WindowCreator {
         window.add(label);
     }
 
+    /**
+     * Method used for adding the calculation button and the listener of it.
+     * @param window Container to add the button to.
+     * @param text The text string to add calculation info for the listener.
+     */
     private static void addButton(Container window, Container text) {
         JButton button = new JButton("Beräkna");
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -85,6 +92,10 @@ public class WindowCreator {
         window.add(button);
     }
 
+    /**
+     * Method used for creating the input portion of the main window.
+     * @param window The container.
+     */
     private static void inputLines(Container window) {
         JTextField thickness = new JTextField();
         JTextField area = new JTextField();
@@ -98,6 +109,11 @@ public class WindowCreator {
         window.add(Box.createRigidArea(new Dimension(30,0)));
     }
 
+    /**
+     * Temporary method used to show the correct calculations.
+     * @param calc Calculator used to calculate the results.
+     * @param window The main container of the program.
+     */
     public static void resultPopup (Calculator calc, Container window) {
         String string =  "Beräknad materialåtgång: " + calc.averageMaterialConsumption() + "l. \n" +
                          "Beräknad total kostnad: " + calc.calculateCost() + "kr. \n"+
